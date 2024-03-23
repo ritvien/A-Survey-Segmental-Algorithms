@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{indentfirst}
+
+
+\geometry{
+    a4paper,
+    left=2cm,
+    right=2cm,
+    top=1.5cm,
+    bottom=1.5cm,
+}
+
+\title{Segmenting for Time Series Anomaly Detection: A Survey}
+\author{Hoang Nguyen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Using 4 Segmentation Methods, include 3 most recently methods and a new approach:
+\begin{itemize}
+  \item \textbf{Sliding Window}
+  \item \textbf{Bottom-up}
+  \item \textbf{Top-down}
+  \item \textbf{SWAB(Sliding Window And Bottom-up)}
+\end{itemize}  
+  to extract  a segment of anomaly subsequences from 10 different  datasets.
+
+Then, let's determine which method should be used for each time series, and explore how to determine  the maximum error for each method, as well as its correlation with time series features.
+\section{Dataset}
+\subsection{Non-cyclic}
+At first, an easy-detected timeseries, with 8640 data points
+\begin{itemize}
+  \item mean value: 100, noise level: 100, standard deviation around the mean:$1\%$
+\end{itemize}
+\includegraphics[width=1\textwidth]{1.png}
+
+\begin{itemize}
+  \item increase standard deviation: 20\% ,decrease noise level: 50
+\end{itemize}
+
+\includegraphics[width=1\textwidth]{2.png}
+
+\begin{itemize}
+  \item add an upward-trend component and a complicated anomaly subsequence
+\end{itemize}
+\includegraphics[width=1\textwidth]{3.png}
+
+\begin{itemize}
+  \item Non-linear trend 
+\end{itemize}
+\includegraphics[width=1\textwidth]{4.png}
+
+Last,we generated a x5 larger dataset to evaluate the time.
+
+\includegraphics[width=1\textwidth]{5.png}
+
+\subsection{Cyclic}
+Five cyclic dataset, from simple to complex:
+
+\includegraphics[width=1\textwidth]{6.png}
+
+\includegraphics[width=1\textwidth]{7.png}
+
+\includegraphics[width=1\textwidth]{8.png}
+
+\includegraphics[width=1\textwidth]{9.png}
+
+\includegraphics[width=1\textwidth]{10.png}
+\subsection{SWaT 2019}
+
+\includegraphics[width=1\textwidth]{data_2019.png}
+Include:
+\begin{itemize}
+    \item Non-cyclic: P601 Status, MV501
+    \item Cyclic: LIT 301, MV201, P101 Status, P301 Status
+\end{itemize}
+
+\section{Segmentation}  
+\subsection{Extract Anomaly Segment}
+Each Algorithms returned many segments. What we will do next, is to choose which one is the Anomaly.
+
+
+Ex: Apply Bottom-up on LIT 301
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{ex.png}
+  \caption{Apply Bottom-up on LIT 30}
+\end{figure}
+\begin{itemize}
+    \item Get the distance: Let assign a segment $s_i$ by 2 point ($x_{i_1}$,$y_{i_1}$) and ($x_{i_2}$,$y_{i_2}$). We calculate the distance ($d$) to the previous and the next segment by:
+\begin{center}
+    $d_{S_i}$ = $({y_{{i-1}_2}}-y_{i_1}) + (y_{i_2}-y_{{i+1}_1})$
+
+\end{center}
+That means we count the one-side diferrence with the previous point and the next point.
+    \item Then select the segment with the greatest distance among them to evaluate metrics.
+\end{itemize}
+\subsection{Detect}
+
+By choose the best max-error for each data and algorithms, then get the most-describe anomaly segment, we use classification metrics to evaluate the performance. The segment with the F1-Score greater than 0.7, we assume that this anomaly sequence is detectable
+
+
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.75\textwidth]{Conclusion.png}
+  \caption{Algorithms with max-error perform the highest F1-Score}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
