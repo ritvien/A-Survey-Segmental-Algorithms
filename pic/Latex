@@ -100,7 +100,8 @@ Ex: Apply Bottom-up on LIT 301
 That means we count the one-side diferrence with the previous point and the next point.
     \item Then select the segment with the greatest distance among them to evaluate metrics.
 \end{itemize}
-\subsection{Detect}
+\subsection{Experimental Results 
+}
 
 By choose the best max-error for each data and algorithms, then get the most-describe anomaly segment, we use classification metrics to evaluate the performance. The segment with the F1-Score greater than 0.7, we assume that this anomaly sequence is detectable. First, with some simple data:
 \begin{figure}[h]
@@ -146,6 +147,21 @@ Finally, we saying about the time:
 
 The Top-down algorithm is slower than the Sliding-window approach by up to 15-20 times. In comparision to the Bottom-up and the SWAB one, it's also slower about 6 times.
 
+
+\section{Max Errror}
+The Experimental Results is depend mostly on choosing max error.
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=1\textwidth]{Correlation_matrix.png}
+  \caption{Correlation between Max-error and Some features of TimeSeries}
+\end{figure}
+
+Where: $min(max\_error)$ and $max(max\_error)$ is range of $max\_error$ that we can see actually the anomaly being segmented.  This range typically corresponds to when the F1-Score is greater than 0.7. In situations where the algorithms can't detect the anomaly (selecting false segment), we still choose the most visuallize the anomaly segment.
+
+\begin{itemize}
+    \item The Sliding-Window and especially  the Top-down has most relation to $standard\_deviation$ and $variance$
+    \item On the other hand, the Bottom-up and SWAB has strong correlation to $absolute\_sum\_of\_change$ and $mean\_abs\_change$
+\end{itemize}
 
 
 
