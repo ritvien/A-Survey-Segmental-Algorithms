@@ -102,15 +102,43 @@ That means we count the one-side diferrence with the previous point and the next
 \end{itemize}
 \subsection{Detect}
 
-By choose the best max-error for each data and algorithms, then get the most-describe anomaly segment, we use classification metrics to evaluate the performance. The segment with the F1-Score greater than 0.7, we assume that this anomaly sequence is detectable
-
-
+By choose the best max-error for each data and algorithms, then get the most-describe anomaly segment, we use classification metrics to evaluate the performance. The segment with the F1-Score greater than 0.7, we assume that this anomaly sequence is detectable. First, with some simple data:
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.75\textwidth]{non_cyclic.png}
+  \caption{Perfomance with non-cyclic data}
+\end{figure}
 
 \begin{figure}[h]
   \centering
-   \includegraphics[width=0.75\textwidth]{Conclusion.png}
-  \caption{Algorithms with max-error perform the highest F1-Score}
+   \includegraphics[width=0.75\textwidth]{low_RSD.png}
+  \caption{Perfomance with low RSD($<0.1$) data}
 \end{figure}
+
+The Topdown and the Sliding Window show better perfomance with 14/15 cases, the worst is Bottom-up to the simple data
+
+
+\newpage
+Next, with the more complicated data:
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.75\textwidth]{cyclic.png}
+  \caption{Perfomance with cyclic data}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.75\textwidth]{high_RSD.png}
+  \caption{Perfomance with high RSD($>0.1$) data}
+\end{figure}
+
+The SWAB demonstrates the best results, while the Bottom-up remains the worst.
+
+Conclusion, with the non-cyclic data, the Top-down is the best choice, on the other hand, SWAB looks better to all of them with the cyclic one. Slilding Window is also good for both cyclic and non-cyclic data, but still worse than Top-down and SWAB in each situation
+
+Finally, we saying about the time:
+
+
 
 
 
@@ -122,4 +150,3 @@ By choose the best max-error for each data and algorithms, then get the most-des
 
 
 \end{document}
-
