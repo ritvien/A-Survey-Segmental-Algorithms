@@ -136,7 +136,20 @@ The SWAB demonstrates the best results, while the Bottom-up remains the worst.
 
 Conclusion, with the non-cyclic data, the Top-down is the best choice, on the other hand, SWAB looks better to all of them with the cyclic one. Slilding Window is also good for both cyclic and non-cyclic data, but still worse than Top-down and SWAB in each situation
 
+\newpage
 Finally, we saying about the time:
+\begin{figure}[h]
+  \centering
+   \includegraphics[width=0.75\textwidth]{Time.png}
+  \caption{Time average on whole 16 dataset, and lagrest data (Id = 5)}
+\end{figure}
+
+The Top-down algorithm is slower than the Sliding-window approach by up to 15-20 times. In comparision to the Bottom-up and the SWAB one, it's also slower about 6 times.
+
+
+
+
+
 
 
 
