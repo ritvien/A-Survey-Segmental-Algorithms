@@ -94,7 +94,7 @@ Ex: Apply Bottom-up on LIT 301
 \begin{itemize}
     \item Get the distance: Let assign a segment $s_i$ by 2 point ($x_{i_1}$,$y_{i_1}$) and ($x_{i_2}$,$y_{i_2}$). We calculate the distance ($d$) to the previous and the next segment by:
 \begin{center}
-    $d_{S_i}$ = $({y_{{i-1}_2}}-y_{i_1}) + (y_{i_2}-y_{{i+1}_1})$
+    $d_{S_i}$ = $(y_{i_1}-{y_{{i-1}_2}}) + (y_{i_2}-y_{{i+1}_1})$
 
 \end{center}
 That means we count the one-side diferrence with the previous point and the next point.
